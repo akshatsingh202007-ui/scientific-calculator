@@ -1,0 +1,262 @@
+
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    color-scheme: dark;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: #0b1020;
+    color: #f3f6ff;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 32px 14px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: radial-gradient(ellipse at top, #1c2c50 0%, #0b1020 60%);
+}
+
+.calculator {
+    width: min(620px, 100%);
+    padding: 26px;
+    border: 1px solid #2b3854;
+    border-radius: 22px;
+    background: rgba(19, 27, 45, 0.96);
+    box-shadow: 0 25px 80px #0006;
+}
+
+header {
+    margin-bottom: 24px;
+}
+
+.brand {
+    color: #9caeff;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.brand span {
+    color: #8590a9;
+}
+
+h1 {
+    margin: 12px 0 6px;
+    font-size: clamp(24px, 5vw, 32px);
+}
+
+header p,
+.screen-label,
+.display-panel label,
+.calculus label {
+    color: #9ca9c2;
+    font-size: 13px;
+}
+
+header p {
+    margin: 0;
+}
+
+.display-panel {
+    padding: 16px;
+    margin-bottom: 18px;
+    border: 1px solid #2c3b58;
+    border-radius: 14px;
+    background: #0c1324;
+}
+
+.display-panel label,
+.calculus label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+#expression,
+.limits input,
+#variable {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #344461;
+    border-radius: 8px;
+    padding: 12px;
+    outline: none;
+    background: #131e32;
+    color: #fff;
+    font: inherit;
+}
+
+#expression:focus,
+.limits input:focus,
+#variable:focus {
+    border-color: #8798ff;
+}
+
+.screen-label {
+    margin-top: 16px;
+}
+
+.screen {
+    margin-top: 6px;
+    min-height: 45px;
+    overflow-wrap: anywhere;
+    text-align: right;
+    font-size: clamp(24px, 5vw, 34px);
+    font-weight: 600;
+}
+
+.result {
+    margin: 8px 0 0;
+    color: #aebcff;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    font: inherit;
+}
+
+.status {
+    margin-top: 10px;
+    color: #7f91b0;
+    font-size: 12px;
+}
+
+/* Exact 4-column x 9-row scientific keypad */
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: repeat(9, minmax(44px, auto));
+    gap: 9px;
+}
+
+button {
+    min-width: 0;
+    min-height: 44px;
+    padding: 9px 5px;
+    border: 1px solid #34435f;
+    border-radius: 9px;
+    background: #202d45;
+    color: #edf2ff;
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.15s;
+}
+
+button:hover {
+    background: #304362;
+}
+
+button:active {
+    transform: scale(0.97);
+}
+
+button:focus-visible {
+    outline: 2px solid #9caeff;
+    outline-offset: 2px;
+}
+
+.keypad button.utility,
+button.utility {
+    background: #4a2939;
+    border-color: #684056;
+}
+
+.keypad button.utility:hover,
+button.utility:hover {
+    background: #66364b;
+}
+
+.keypad button.equals {
+    background: #687cff;
+    border-color: #687cff;
+    color: #fff;
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.keypad button.equals:hover {
+    background: #5268ed;
+}
+
+/* Calculus section */
+.calculus {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #2c3b58;
+}
+
+.calculus h2 {
+    margin: 0 0 16px;
+    font-size: 18px;
+}
+
+#variable {
+    margin-bottom: 12px;
+}
+
+.calculus-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 9px;
+}
+
+.limits {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
+    margin: 16px 0;
+}
+
+.definite {
+    width: 100%;
+    background: #263f4b;
+    border-color: #3b6370;
+}
+
+.definite:hover {
+    background: #315664;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    margin-top: 24px;
+    color: #7f8ca6;
+    font-size: 11px;
+}
+
+/* Responsive layout */
+@media (max-width: 420px) {
+    body {
+        padding: 14px 8px;
+    }
+
+    .calculator {
+        padding: 16px;
+        border-radius: 16px;
+    }
+
+    .keypad {
+        gap: 6px;
+        grid-template-rows: repeat(9, minmax(42px, auto));
+    }
+
+    button {
+        min-height: 42px;
+        padding: 6px 3px;
+        font-size: 12px;
+    }
+
+    .keypad button.equals {
+        font-size: 22px;
+    }
+
+    .calculus-buttons {
+        grid-template-columns: 1fr;
+    }
+}

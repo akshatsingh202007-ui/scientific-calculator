@@ -1,0 +1,132 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <main class="calculator">
+        <header>
+            <div class="brand">SCIENTIFIC <span>CALCULATOR</span></div>
+            <h1>Scientific Calculator</h1>
+            <p>Mathematics · Physics · Calculus</p> 
+        </header>
+
+        <section class="display-panel">
+            <label for="expression">Mathematical expression</label>
+            <input
+                id="expression"
+                type="text"
+                placeholder="e.g. sin(pi/6) + x^2"
+                autocomplete="off"
+                spellcheck="false"
+            >
+
+            <div class="screen-label">Result</div>
+            <div id="screen" class="screen">0</div>
+            <pre id="result" class="result"></pre>
+            <div id="status" class="status">
+                Ready · Angles in radians
+            </div>
+        </section>
+
+        <section class="keypad" aria-label="Scientific calculator keypad">
+
+            <!-- Row 0: bottom -->
+            <button data-insert="1" data-col="0" data-row="0">1</button>
+            <button data-insert="2" data-col="1" data-row="0">2</button>
+            <button data-insert="3" data-col="2" data-row="0">3</button>
+            <button data-insert="." data-col="3" data-row="0">.</button>
+
+            <!-- Row 1 -->
+            <button data-insert="4" data-col="0" data-row="1">4</button>
+            <button data-insert="5" data-col="1" data-row="1">5</button>
+            <button data-insert="6" data-col="2" data-row="1">6</button>
+            <button data-insert="x" data-col="3" data-row="1">x</button>
+
+            <!-- Row 2 -->
+            <button data-insert="7" data-col="0" data-row="2">7</button>
+            <button data-insert="8" data-col="1" data-row="2">8</button>
+            <button data-insert="9" data-col="2" data-row="2">9</button>
+            <button data-insert="factorial(" data-col="3" data-row="2">n!</button>
+
+            <!-- Row 3 -->
+            <button data-insert="+" data-col="0" data-row="3">+</button>
+            <button data-insert="0" data-col="1" data-row="3">0</button>
+            <button data-insert="*" data-col="2" data-row="3">×</button>
+            <button data-insert="ln(" data-col="3" data-row="3">ln</button>
+
+            <!-- Row 4 -->
+            <button data-insert="-" data-col="0" data-row="4">−</button>
+            <button data-insert="^" data-col="1" data-row="4">xʸ</button>
+            <button data-insert="/" data-col="2" data-row="4">÷</button>
+            <button data-insert="log(" data-col="3" data-row="4">log</button>
+
+            <!-- Row 5 -->
+            <button data-insert="I" data-col="0" data-row="5">i</button>
+            <button data-insert="√" data-col="1" data-row="5">√</button>
+            <button data-insert="exp(" data-col="2" data-row="5">eˣ</button>
+            <button data-insert="pi" data-col="3" data-row="5">π</button>
+
+            <!-- Row 6 -->
+            <button data-insert="(" data-col="0" data-row="6">(</button>
+            <button data-insert=")" data-col="1" data-row="6">)</button>
+            <button data-insert="e" data-col="2" data-row="6">e</button>
+            <button id="delete" class="utility"
+                    data-col="3" data-row="6">DEL</button>
+
+            <!-- Row 7 -->
+            <button data-insert="arcsin(" data-col="0" data-row="7">sin⁻¹</button>
+            <button data-insert="arccos(" data-col="1" data-row="7">cos⁻¹</button>
+            <button data-insert="arctan(" data-col="2" data-row="7">tan⁻¹</button>
+            <button id="clear" class="utility"
+                    data-col="3" data-row="7">AC</button>
+
+            <!-- Row 8: top -->
+            <button data-insert="sin(" data-col="0" data-row="8">Sin</button>
+            <button data-insert="cos(" data-col="1" data-row="8">Cos</button>
+            <button data-insert="tan(" data-col="2" data-row="8">Tan</button>
+            <button id="equals" class="equals"
+                    data-col="3" data-row="8">=</button>
+        </section>
+
+        <section class="calculus">
+            <h2>Calculus tools</h2>
+
+            <label for="variable">Variable</label>
+            <select id="variable">
+                <option value="x">x</option>
+                <option value="y">y</option>
+            </select>
+
+            <div class="calculus-buttons">
+                <button id="differentiate">Differentiate d/dx</button>
+                <button id="integrate">Indefinite ∫</button>
+            </div>
+
+            <div class="limits">
+                <label for="lower">Lower limit</label>
+                <input id="lower" type="text" value="0">
+
+                <label for="upper">Upper limit</label>
+                <input id="upper" type="text" value="1">
+            </div>
+
+            <button id="definite-integrate" class="definite">
+                Calculate definite integral
+            </button>
+        </section>
+
+        <footer>
+            <span>Scientific Calculator</span>
+            <span>Prototype · For learning</span>
+        </footer>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
