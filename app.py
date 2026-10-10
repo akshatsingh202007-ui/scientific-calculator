@@ -41,7 +41,7 @@ ALLOWED_NAMES = {
     "sinh": sp.sinh,
     "cosh": sp.cosh,
     "tanh": sp.tanh,
-    "log": sp.log,
+    "log": lambda v: sp.log(v, 10),
     "ln": sp.log,
     "exp": sp.exp,
     "abs": sp.Abs,
@@ -82,6 +82,28 @@ def convert_roots(expression):
 
     return expression
 
+ALLOWED_CHARACTERS = re.compile(r"[0-9A-Za-z_+\-*/().,\s]*")
+
+
+def check_expression_is_safe(expression):
+    """Reject anything that is not plain math."""
+
+    # Only letters, numbers, and math symbols are allowed.
+    if not ALLOWED_CHARACTERS.fullmatch(expression):
+        raise ValueError("Expression contains unsupported characters.")
+
+    # No sneaky double underscores like __import__
+    if "__" in expression:
+        raise ValueError("Invalid expression.")
+
+    # No dots followed by letters, like (1).real
+    if re.search(r"\.\s*[A-Za-z_]", expression):
+        raise ValueError("Invalid expression.")
+
+    # Every word must be on our allowed list (sin, cos, pi, ...)
+    for word in re.findall(r"\b[A-Za-z_]\w*", expression):
+        if word not in ALLOWED_NAMES:
+            raise ValueError(f"Unknown name: {word}")
 
 def parse_expression(expression):
     """Parse a calculator expression using SymPy."""
@@ -102,6 +124,8 @@ def parse_expression(expression):
     expression = expression.replace("×", "*")
     expression = expression.replace("÷", "/")
     expression = expression.replace("π", "pi")
+
+    check_expression_is_safe(expression)
 
     return sp.sympify(
         expression,
